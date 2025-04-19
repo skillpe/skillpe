@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "firebase": "^11.6.0"
+  },
+  "name": "skillpee",
+  "version": "1.0.0",
+  "main": "courses.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Now - SkillPe Affiliate Program</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #6366f1;
+            --accent: #f59e0b;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: var(--dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Main Content Container */
+        .main-container {
+            display: flex;
+            min-height: calc(100vh - 70px);
+            padding: 40px 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Registration Card */
+        .registration-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 500px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .registration-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        /* Card Header */
+        .card-header {
+            background: var(--gradient);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .card-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .card-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        
+        /* Card Body */
+        .card-body {
+            padding: 30px;
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 38px;
+            color: #9ca3af;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background-color: #f9fafb;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+            background-color: white;
+        }
+        
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+            opacity: 0.95;
+        }
+        
+        .btn-secondary {
+            background: #f3f4f6;
+            color: var(--dark);
+        }
+        
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+        
+        /* Package Selection */
+        .package-section {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 25px 0;
+        }
+        
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .radio-option {
+            flex: 1;
+        }
+        
+        .radio-input {
+            display: none;
+        }
+        
+        .radio-label {
+            display: block;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .radio-input:checked + .radio-label {
+            border-color: var(--primary);
+            background: #eef2ff;
+            font-weight: 600;
+        }
+        
+        /* Referral Section */
+        .referral-section {
+            margin: 20px 0;
+            padding-top: 20px;
+            border-top: 1px dashed #e5e7eb;
+        }
+        
+        .referral-input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .referral-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            margin: 30px 0;
+            background: #f0fdf4;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #dcfce7;
+        }
+        
+        .benefits-title {
+            font-weight: 700;
+            color: #166534;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .benefits-list {
+            list-style: none;
+        }
+        
+        .benefit-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .benefit-icon {
+            color: var(--success);
+            margin-top: 2px;
+        }
+        
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .payment-method {
+            height: 25px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            opacity: 1;
+        }
+        
+        /* Footer Links */
+        .terms-text {
+            font-size: 12px;
+            color: #6b7280;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .text-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .text-link:hover {
+            text-decoration: underline;
+        }
+        
+        .login-link {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card-header {
+                padding: 25px 20px;
+            }
+            
+            .card-body {
+                padding: 25px 20px;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+            }
+            
+            .payment-method {
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <img src="/images/logo.png" alt="SkillPe Logo" class="logo">
+            <a href="login.html" class="btn btn-primary" style="width: auto; padding: 8px 16px;">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="registration-card">
+            <!-- Card Header -->
+            <div class="card-header">
+                <span class="badge">Earn ₹50,000+</span>
+                <h2>Join SkillPe Affiliate Program</h2>
+                <p>Start earning commissions by promoting our courses</p>
+            </div>
+            
+            <!-- Card Body -->
+            <div class="card-body">
+                <form id="registrationForm">
+                    <!-- Personal Information -->
+                    <div class="form-group">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">WhatsApp Number</label>
+                        <i class="fas fa-phone input-icon"></i>
+                        <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your WhatsApp number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="form-label">Create Password</label>
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Create a strong password" required>
+                    </div>
+    
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Register Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+                    <!-- Package Selection -->
+                    <div class="package-section">
+                        <h3 class="section-title">Select Your Package:</h3>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="basicPackage" name="package" class="radio-input" value="50" checked>
+                                <label for="basicPackage" class="radio-label">
+                                    Basic (₹50)<br>
+                                    <small>Course Access Only</small>
+                                </label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="premiumPackage" name="package" class="radio-input" value="299">
+                                <label for="premiumPackage" class="radio-label">
+                                    Premium (₹299)<br>
+                                    <small>Earn ₹200 per referral</small>
+                                </label>
+                            </div>
+                        </div>
+                        <a href="packages.html" class="btn btn-secondary">
+                            <i class="fas fa-box-open"></i> View All Packages
+                        </a>
+                    </div>
+                    
+                    <!-- Referral Code -->
+                    <div class="referral-section">
+                        <label for="referralCode" class="form-label">Referral Code (Optional)</label>
+                        <div class="referral-input-group">
+                            <input type="text" id="referralCode" class="referral-input" placeholder="Enter referral code if any">
+                        </div>
+                    </div>
+                    
+                    <!-- Benefits Section -->
+                    <div class="benefits-section">
+                        <h3 class="benefits-title">
+                            <i class="fas fa-medal"></i> Affiliate Benefits
+                        </h3>
+                        <ul class="benefits-list">
+                            <li class="benefit-item">
+                                <i class="fas fa-check-circle benefit-icon"></i>
+                                <span>Earn up to ₹200 for every successful referral</span>
+                            </li>
+                            <li class="benefit-item">
+                                <i class="fas fa-check-circle benefit-icon"></i>
+                                <span>Withdraw earnings directly to your bank account</span>
+                            </li>
+                            <li class="benefit-item">
+                                <i class="fas fa-check-circle benefit-icon"></i>
+                                <span>Get access to marketing materials & tracking links</span>
+                            </li>
+                            <li class="benefit-item">
+                                <i class="fas fa-check-circle benefit-icon"></i>
+                                <span>Real-time dashboard to track your earnings</span>
+                            </li>
+                            <li class="benefit-item">
+                                <i class="fas fa-check-circle benefit-icon"></i>
+                                <span>Weekly payouts with no minimum threshold</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Payment Methods -->
+                    <div class="payment-methods">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/2560px-PayPal.svg.png" alt="PayPal" class="payment-method">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" class="payment-method">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png" alt="Mastercard" class="payment-method">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/UPI-Logo.png" alt="UPI" class="payment-method">
+                    </div>
+                    
+                    <!-- Terms and Conditions -->
+                    <p class="terms-text">
+                        By registering, you agree to our <a href="legal.html" class="text-link">Terms</a> and <a href="legal.html" class="text-link">Privacy Policy</a>
+                    </p>
+                    
+                    <!-- Login Link -->
+                    <p class="login-link">
+                        Already have an account? <a href="login.html" class="text-link">Login Now</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDTokmcW4mkKaSz6qeaMonlmjHM2wKTb6c",
+  authDomain: "skillppe.firebaseapp.com",
+  projectId: "skillppe",
+  storageBucket: "skillppe.firebasestorage.app",
+  messagingSenderId: "714570952768",
+  appId: "1:714570952768:web:bbe41cc6091a3a838defa5",
+  measurementId: "G-D8YHKMY104"
+};
+
+export const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+      
+        const registrationForm = document.getElementById('registrationForm');
+      
+        registrationForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+      
+          const fullName = document.getElementById('fullName').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const phone = document.getElementById('phone').value.trim();
+          const password = document.getElementById('password').value;
+
+          try {
+            // Create user in Firebase Authentication
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // Save additional user data in Firestore
+            await setDoc(doc(db, "users", user.uid), {
+              fullName,
+              email,
+              phone,
+              createdAt: new Date()
+            });
+
+            alert('Registration successful!');
+            window.location.href = "login.html";
+          } catch (error) {
+            console.error("Error during registration:", error);
+            alert(error.message);
+          }
+        });
+
+        fetch('https://www.instamojo.com/api/1.1/payment-requests/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer YOUR_ACCESS_TOKEN'
+            },
+            body: JSON.stringify({
+                purpose: 'Payout',
+                amount: '1000',
+                buyer_name: 'John Doe',
+                email: 'john.doe@example.com',
+                phone: '9999999999',
+                redirect_url: 'https://your-redirect-url.com'
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Payout initiated:', data);
+        })
+        .catch(error => {
+            console.error('Error initiating payout:', error);
+        });
+
+        db.collection('users').onSnapshot((snapshot) => {
+            snapshot.docs.forEach((doc) => {
+                console.log(doc.data());
+            });
+        });
+      </script>
+</body>
+</html>
