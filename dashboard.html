@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPe Affiliate Program</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #f8f9fa;
+            --dark: #343a40;
+            --light: #ffffff;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        .affiliate-header {
+            background: linear-gradient(135deg, var(--primary), #6c5ce7);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .affiliate-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .affiliate-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Dashboard Navigation */
+        .dashboard-nav {
+            display: flex;
+            overflow-x: auto;
+            background: var(--light);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            padding: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .dashboard-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-item {
+            padding: 0.75rem 1.25rem;
+            white-space: nowrap;
+            font-weight: 500;
+            color: var(--dark);
+            border-radius: 6px;
+            margin-right: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .nav-item i {
+            margin-right: 8px;
+        }
+
+        /* Dashboard Content */
+        .dashboard-content {
+            display: none;
+        }
+
+        .dashboard-content.active {
+            display: block;
+        }
+
+        /* Profile Section */
+        .profile-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Referral Section */
+        .referral-section {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .referral-link-box {
+            background: var(--secondary);
+            border: 1px dashed #ccc;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .referral-link {
+            word-break: break-all;
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn i {
+            margin-right: 6px;
+        }
+
+        .whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .telegram {
+            background: #0088cc;
+            color: white;
+        }
+
+        .facebook {
+            background: #3b5998;
+            color: white;
+        }
+
+        .twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+
+        /* Packages Grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .course-card {
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .course-card.featured {
+            border: 2px solid var(--primary);
+        }
+
+        .course-badge,
+        .bonus-badge,
+        .course-ribbon {
+            position: absolute;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 4px;
+            color: white;
+            top: 10px;
+            right: 10px;
+        }
+
+        .course-badge {
+            background: var(--success);
+        }
+
+        .bonus-badge {
+            background: var(--warning);
+            color: var(--dark);
+            top: 40px;
+        }
+
+        .course-ribbon {
+            background: var(--danger);
+            top: 10px;
+            left: -5px;
+            border-radius: 4px 4px 4px 0;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .course-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .course-price .original {
+            font-size: 1rem;
+            text-decoration: line-through;
+            color: #777;
+            margin-left: 0.5rem;
+        }
+
+        .course-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .course-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-features li {
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .course-features i {
+            color: var(--success);
+            margin-right: 0.5rem;
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: #3a5ae8;
+            border-color: #3a5ae8;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Earnings Calculator */
+        .calculator-section {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-section h2 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .calculator-result {
+            background: var(--secondary);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-item.total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-top: 1px solid #ddd;
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Earnings Summary */
+        .earnings-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-card h3 {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card p {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Bank Details Form */
+        .bank-form {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -0.5rem;
+        }
+
+        .form-col {
+            flex: 1;
+            min-width: 250px;
+            padding: 0 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .save-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: #218838;
+        }
+
+        /* Payment Section */
+        .payment-section {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .earnings-summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .affiliate-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-nav {
+                padding: 0.25rem;
+            }
+
+            .nav-item {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            .course-content {
+                padding: 1rem;
+            }
+
+            .earnings-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* User Profile Section */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        
+        .user-info h3 {
+            margin-bottom: 0.25rem;
+        }
+        
+        .user-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .logout-btn {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="affiliate-header">
+            <h1>SkillPe Affiliate Program</h1>
+            <p>Earn commissions by referring friends and customers</p>
+        </header>
+
+        <!-- User Profile Section -->
+        <div class="profile-card">
+            <div class="user-profile">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <div class="user-info">
+                    <h3 id="userName">Loading...</h3>
+                    <p id="userEmail">Affiliate Member</p>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard Navigation -->
+        <div class="dashboard-nav">
+            <div class="nav-item active" data-target="packages">
+                <i class="fas fa-box-open"></i> Packages
+            </div>
+            <div class="nav-item" data-target="earnings">
+                <i class="fas fa-rupee-sign"></i> My Earnings
+            </div>
+            <div class="nav-item" data-target="calculator">
+                <i class="fas fa-calculator"></i> Earnings Calculator
+            </div>
+            <div class="nav-item" data-target="payout">
+                <i class="fas fa-wallet"></i> Payout
+            </div>
+            <div class="nav-item" data-target="bank">
+                <i class="fas fa-university"></i> Bank Details
+            </div>
+        </div>
+
+        <!-- Payment Button Section -->
+        <div class="payment-section" id="paymentSection">
+            <h3 id="paymentHeading">Buy Course to Get Started</h3>
+            <p id="paymentDescription">Purchase any package below to activate your affiliate account</p>
+            <button id="payNowBtn" class="btn btn-primary">Pay Now</button>
+
+            <div id="referralSection" style="display: none; margin-top: 20px;">
+                <h3>Your Referral Code</h3>
+                <div class="referral-link-box">
+                    <span id="referralLink" class="referral-link">Loading...</span>
+                    <button class="copy-btn" onclick="copyReferralLink()">Copy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Packages Section -->
+        <div class="dashboard-content active" id="packages">
+            <div class="course-grid">
+                <div class="course-card featured">
+                    <div class="bonus-badge">100 Bonus Points</div>
+                    <div class="course-content">
+                        <h3>SkillPe Starter</h3>
+                        <div class="course-price">₹29 <span class="original">₹499</span></div>
+                        <p class="course-description">Perfect package to kickstart your earning journey with minimal
+                            investment. Get 100 bonus points for your first 10 sales!</p>
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> Direct Referral: ₹18 per sale</li>
+                            <li><i class="fas fa-check"></i> Team Referral: ₹2 per sale</li>
+                            <li><i class="fas fa-check"></i> Basic Marketing Materials</li>
+                            <li><i class="fas fa-check"></i> Access to Affiliate Dashboard</li>
+                            <li><i class="fas fa-check"></i> WhatsApp Support</li>
+                            <li><i class="fas fa-check"></i> 100 Bonus Points (for first 10 sales)</li>
+                        </ul>
+                        <a href="https://test.instamojo.com/api/1.1/payment-requests/?userId={{userId}}&package=29" target="_blank" class="btn btn-primary">Get Started Now</a>
+                    </div>
+                </div>
+            
+                <div class="course-card">
+                    <div class="course-badge">Most Popular</div>
+                    <div class="bonus-badge">300 Bonus Points</div>
+                    <div class="course-content">
+                        <h3>Mini Boost</h3>
+                        <div class="course-price">₹99 <span class="original">₹599</span></div>
+                        <p class="course-description">Boost your affiliate influence and earnings with advanced tools.
+                            Earn 500 bonus points for your first 50 sales!</p>
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> All Starter Benefits</li>
+                            <li><i class="fas fa-check"></i> Direct Commission: ₹58 per sale</li>
+                            <li><i class="fas fa-check"></i> Team Commission: ₹20 per sale</li>
+                            <li><i class="fas fa-check"></i> Advanced Marketing Tools</li>
+                            <li><i class="fas fa-check"></i> Weekly Training Webinars</li>
+                            <li><i class="fas fa-check"></i> Priority Email Support</li>
+                            <li><i class="fas fa-check"></i> 300 Bonus Points (for first 20 sales)</li>
+                        </ul>
+                        <a href="https://test.instamojo.com/api/1.1/payment-requests/?userId={{userId}}&package=99" target="_blank" class="btn btn-outline">Choose Plan</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-badge">Most Popular</div>
+                    <div class="bonus-badge">500 Bonus Points</div>
+                    <div class="course-content">
+                        <h3>Mini Boost</h3>
+                        <div class="course-price">₹299 <span class="original">₹999</span></div>
+                        <p class="course-description">Boost your affiliate influence and earnings with advanced tools.
+                            Earn 500 bonus points for your first 50 sales!</p>
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> All Starter Benefits</li>
+                            <li><i class="fas fa-check"></i> Direct Commission: ₹200 per sale</li>
+                            <li><i class="fas fa-check"></i> Team Commission: ₹79 per sale</li>
+                            <li><i class="fas fa-check"></i> Advanced Marketing Tools</li>
+                            <li><i class="fas fa-check"></i> Weekly Training Webinars</li>
+                            <li><i class="fas fa-check"></i> Priority Email Support</li>
+                            <li><i class="fas fa-check"></i> 500 Bonus Points (for first 50 sales)</li>
+                        </ul>
+                        <a href="RegisterNow.html" class="btn btn-outline">Choose Plan</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-badge">Best Value</div>
+                    <div class="bonus-badge">1000 Bonus Points</div>
+                    <div class="course-content">
+                        <h3>Power Learn</h3>
+                        <div class="course-price">₹499 <span class="original">₹1999</span></div>
+                        <p class="course-description">Premium package for serious affiliates who want maximum earnings.
+                            Get 1000 bonus points for your first 100 sales!</p>
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> All Mini Boost Benefits</li>
+                            <li><i class="fas fa-check"></i> Direct Commission: ₹390 per sale</li>
+                            <li><i class="fas fa-check"></i> Team Commission: ₹89 per sale</li>
+                            <li><i class="fas fa-check"></i> Priority Support</li>
+                            <li><i class="fas fa-check"></i> Exclusive Content Access</li>
+                            <li><i class="fas fa-check"></i> Customizable Sales Pages</li>
+                            <li><i class="fas fa-check"></i> 1-on-1 Coaching Sessions</li>
+                            <li><i class="fas fa-check"></i> 1000 Bonus Points (for first 100 sales)</li>
+                        </ul>
+                        <a href="RegisterNow.html" class="btn btn-outline">Choose Plan</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-ribbon">Best Value</div>
+                    <div class="bonus-badge">1299 Bonus Points</div>
+                    <div class="course-content">
+                        <h3>Pro Affiliate</h3>
+                        <div class="course-price">₹699 <span class="original">₹2999</span></div>
+                        <p class="course-description">For professional affiliates who want premium features and maximum
+                            earnings potential.</p>
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> All Power Learn Benefits</li>
+                            <li><i class="fas fa-check"></i> Direct Commission: ₹500 per sale</li>
+                            <li><i class="fas fa-check"></i> Team Commission: ₹150 per sale</li>
+                            <li><i class="fas fa-check"></i> VIP Support</li>
+                            <li><i class="fas fa-check"></i> Done-For-You Campaigns</li>
+                            <li><i class="fas fa-check"></i> Custom Landing Pages</li>
+                            <li><i class="fas fa-check"></i> 1299 Bonus Points (for first 100 sales)</li>
+                        </ul>
+                        <a href="RegisterNow.html" class="btn btn-outline">Choose Plan</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="bonus-badge">1899 Bonus Points</div>
+                    <div class="course-content">
+                        <h3>Elite Package</h3>
+                        <div class="course-price">₹999 <span class="original">₹4999</span></div>
+                        <p class="course-description">For top performers who want all the tools to maximize their
+                            earnings.</p>
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> All Pro Affiliate Benefits</li>
+                            <li><i class="fas fa-check"></i> Direct Commission: ₹700 per sale</li>
+                            <li><i class="fas fa-check"></i> Team Commission: ₹250 per sale</li>
+                            <li><i class="fas fa-check"></i> Personal Account Manager</li>
+                            <li><i class="fas fa-check"></i> Advanced Analytics</li>
+                            <li><i class="fas fa-check"></i> Webinar Support</li>
+                            <li><i class="fas fa-check"></i> 1899 Bonus Points (for first 100 sales)</li>
+                        </ul>
+                        <a href="RegisterNow.html" class="btn btn-outline">Choose Plan</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-ribbon">Premium</div>
+                    <div class="bonus-badge">6999 Bonus Points</div>
+                    <div class="course-content">
+                        <h3>Master Bundle</h3>
+                        <div class="course-price">₹2999 <span class="original">₹9999</span></div>
+                        <p class="course-description">The ultimate package for serious affiliates who want to dominate
+                            the market.</p>
+                        <ul class="course-features">
+                            <li><i class="fas fa-check"></i> All Elite Package Benefits</li>
+                            <li><i class="fas fa-check"></i> Direct Commission: ₹2000 per sale</li>
+                            <li><i class="fas fa-check"></i> Team Commission: ₹899 per sale</li>
+                            <li><i class="fas fa-check"></i> Done-For-You Team Building</li>
+                            <li><i class="fas fa-check"></i> Automated Sales Funnels</li>
+                            <li><i class="fas fa-check"></i> Exclusive Mastermind Access</li>
+                            <li><i class="fas fa-check"></i> 6999 Bonus Points (for first 100 sales)</li>
+                        </ul>
+                        <a href="RegisterNow.html" class="btn btn-outline">Choose Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings Section -->
+        <div class="dashboard-content" id="earnings">
+            <div class="earnings-summary">
+                <div class="summary-card">
+                    <h3>Total Earnings</h3>
+                    <p id="totalEarnings">₹0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Direct Earnings</h3>
+                    <p id="directEarnings">₹0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Team Earnings</h3>
+                    <p id="teamEarnings">₹0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Available Balance</h3>
+                    <p id="availableBalance">₹0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Withdrawn</h3>
+                    <p id="withdrawnAmount">₹0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Pending Payout</h3>
+                    <p id="pendingPayout">₹0</p>
+                </div>
+            </div>
+
+            <div class="referral-section">
+                <h2>Recent Earnings</h2>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background-color: #f8f9fa;">
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Date</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Type</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Amount</th>
+                                <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="earningsTableBody">
+                            <!-- Earnings data will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings Calculator -->
+        <div class="dashboard-content" id="calculator">
+            <div class="calculator-section">
+                <h2>Earnings Calculator</h2>
+                <p>Estimate your potential earnings based on your package and performance.</p>
+
+                <div class="form-group">
+                    <label for="package">Select Your Package:</label>
+                    <select id="package" class="form-control" onchange="calculateEarnings()">
+                        <option value="29">SkillPe Starter (₹29)</option>
+                        <option value="99">SkillPe Starter (₹99)</option>
+                        <option value="299">Mini Boost (₹299)</option>
+                        <option value="499">Power Learn (₹499)</option>
+                        <option value="699">Pro Affiliate (₹699)</option>
+                        <option value="999">Elite Package (₹999)</option>
+                        <option value="2999">Master Bundle (₹2999)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="directSales">Estimated Direct Sales per Month:</label>
+                    <input type="number" id="directSales" class="form-control" value="10" min="0"
+                        onchange="calculateEarnings()">
+                </div>
+
+                <div class="form-group">
+                    <label for="teamMembers">Number of Team Members:</label>
+                    <input type="number" id="teamMembers" class="form-control" value="5" min="0"
+                        onchange="calculateEarnings()">
+                </div>
+
+                <div class="form-group">
+                    <label for="teamSales">Estimated Team Sales per Member per Month:</label>
+                    <input type="number" id="teamSales" class="form-control" value="5" min="0"
+                        onchange="calculateEarnings()">
+                </div>
+
+                <div class="calculator-result">
+                    <h3>Estimated Monthly Earnings</h3>
+                    <div class="result-item">
+                        <span>Direct Commissions:</span>
+                        <span id="calcDirectEarnings">₹0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Team Commissions:</span>
+                        <span id="calcTeamEarnings">₹0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Bonus Points:</span>
+                        <span id="calcBonusPoints">0</span>
+                    </div>
+                    <div class="result-item total">
+                        <span>Total Earnings:</span>
+                        <span id="calcTotalEarnings">₹0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payout Section -->
+        <div class="dashboard-content" id="payout">
+            <div class="referral-section">
+              <h2>Withdrawal Request</h2>
+              <div class="form-group">
+                <label for="withdrawAmount">Amount to Withdraw (Min. ₹500):</label>
+                <input type="number" id="withdrawAmount" class="form-control" placeholder="Enter amount" min="500">
+              </div>
+              <button class="btn btn-primary" style="margin-top: 1rem;" id="requestWithdrawalBtn">
+                Request Withdrawal
+              </button>
+          
+              <div id="withdrawalStatus" style="margin-top: 1rem; display: none;"></div>
+          
+              <h2 style="margin-top: 2rem;">Withdrawal History</h2>
+              <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                  <thead>
+                    <tr style="background-color: #f8f9fa;">
+                      <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Date</th>
+                      <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Amount</th>
+                      <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Method</th>
+                      <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="withdrawalHistoryBody">
+                    <!-- Withdrawal history will be populated here -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+        <!-- Bank Details Section -->
+        <div class="dashboard-content" id="bank">
+            <div class="bank-form">
+                <h2>Bank Account Details</h2>
+                <p>Provide your bank details to receive payments. All information is securely encrypted.</p>
+
+                <form id="bankDetailsForm">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="accountName">Account Holder Name</label>
+                                <input type="text" id="accountName" class="form-control"
+                                    placeholder="As per bank records" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="bankName">Bank Name</label>
+                                <input type="text" id="bankName" class="form-control"
+                                    placeholder="e.g. State Bank of India" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="accountNumber">Account Number</label>
+                                <input type="text" id="accountNumber" class="form-control"
+                                    placeholder="Your account number" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="accountType">Account Type</label>
+                                <select id="accountType" class="form-control" required>
+                                    <option value="">Select Account Type</option>
+                                    <option value="savings">Savings</option>
+                                    <option value="current">Current</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="ifscCode">IFSC Code</label>
+                                <input type="text" id="ifscCode" class="form-control" placeholder="11-digit IFSC code"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="upiId">UPI ID (Optional)</label>
+                                <input type="text" id="upiId" class="form-control" placeholder="yourname@upi">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="save-btn">
+                        <i class="fas fa-save"></i> Save Details
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTokmcW4mkKaSz6qeaMonlmjHM2wKTb6c",
+            authDomain: "skillppe.firebaseapp.com",
+            projectId: "skillppe",
+            storageBucket: "skillppe.appspot.com",
+            messagingSenderId: "714570952768",
+            appId: "1:714570952768:web:bbe41cc6091a3a838defa5",
+            measurementId: "G-D8YHKMY104"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // DOM elements
+        const userAvatar = document.getElementById('userAvatar');
+        const userName = document.getElementById('userName');
+        const userEmail = document.getElementById('userEmail');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const navItems = document.querySelectorAll('.nav-item');
+        const dashboardContents = document.querySelectorAll('.dashboard-content');
+        const bankDetailsForm = document.getElementById('bankDetailsForm');
+        const requestWithdrawalBtn = document.getElementById('requestWithdrawalBtn');
+        const withdrawAmountInput = document.getElementById('withdrawAmount');
+
+        // Check auth state
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in
+                const displayName = user.displayName || user.email.split('@')[0];
+                const initial = displayName.charAt(0).toUpperCase();
+                
+                // Update UI
+                userAvatar.textContent = initial;
+                userName.textContent = displayName;
+                userEmail.textContent = user.email;
+
+                // Load user data from Firestore
+                loadUserData(user.uid);
+            } else {
+                // User is signed out, redirect to login
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Load user data from Firestore
+        function loadUserData(userId) {
+            db.collection("users").doc(userId).get().then((doc) => {
+                if (doc.exists) {
+                    const userData = doc.data();
+                    
+                    // Update earnings summary
+                    document.getElementById('totalEarnings').textContent = `₹${userData.totalEarnings || 0}`;
+                    document.getElementById('directEarnings').textContent = `₹${userData.directEarnings || 0}`;
+                    document.getElementById('teamEarnings').textContent = `₹${userData.teamEarnings || 0}`;
+                    document.getElementById('availableBalance').textContent = `₹${userData.availableBalance || 0}`;
+                    document.getElementById('withdrawnAmount').textContent = `₹${userData.withdrawnAmount || 0}`;
+                    document.getElementById('pendingPayout').textContent = `₹${userData.pendingPayout || 0}`;
+                    
+                    // Load bank details if they exist
+                    if (userData.bankDetails) {
+                        document.getElementById('accountName').value = userData.bankDetails.accountName || '';
+                        document.getElementById('bankName').value = userData.bankDetails.bankName || '';
+                        document.getElementById('accountNumber').value = userData.bankDetails.accountNumber || '';
+                        document.getElementById('accountType').value = userData.bankDetails.accountType || '';
+                        document.getElementById('ifscCode').value = userData.bankDetails.ifscCode || '';
+                        document.getElementById('upiId').value = userData.bankDetails.upiId || '';
+                    }
+                    
+                    // Load earnings history
+                    loadEarningsHistory(userId);
+                    
+                    // Load withdrawal history
+                    loadWithdrawalHistory(userId);
+                }
+            }).catch((error) => {
+                console.error("Error loading user data:", error);
+            });
+        }
+
+        // Load earnings history
+        function loadEarningsHistory(userId) {
+            const earningsTableBody = document.getElementById('earningsTableBody');
+            earningsTableBody.innerHTML = ''; // Clear existing rows
+
+            // Initially, show no data
+            if (!userId) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td colspan="4" style="text-align: center; padding: 12px;">No earnings yet</td>
+                `;
+                earningsTableBody.appendChild(row);
+                return;
+            }
+
+            // Fetch earnings data from Firestore (if available)
+            db.collection("users").doc(userId).get().then((doc) => {
+                if (doc.exists && doc.data().earnings) {
+                    const earnings = doc.data().earnings;
+                    earnings.forEach(earning => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">${earning.date}</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">${earning.type}</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">${earning.amount}</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">
+                                <span style="color: ${earning.status === 'Completed' ? 'var(--success)' : 'var(--info)'};">${earning.status}</span>
+                            </td>
+                        `;
+                        earningsTableBody.appendChild(row);
+                    });
+                } else {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td colspan="4" style="text-align: center; padding: 12px;">No earnings yet</td>
+                    `;
+                    earningsTableBody.appendChild(row);
+                }
+            }).catch((error) => {
+                console.error("Error loading earnings history:", error);
+            });
+        }
+
+        // Load withdrawal history
+        function loadWithdrawalHistory(userId) {
+            const withdrawalHistoryBody = document.getElementById('withdrawalHistoryBody');
+            withdrawalHistoryBody.innerHTML = ''; // Clear existing rows
+
+            // Initially, show no data
+            if (!userId) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td colspan="4" style="text-align: center; padding: 12px;">No withdrawals yet</td>
+                `;
+                withdrawalHistoryBody.appendChild(row);
+                return;
+            }
+
+            // Fetch withdrawal data from Firestore (if available)
+            db.collection("users").doc(userId).get().then((doc) => {
+                if (doc.exists && doc.data().withdrawals) {
+                    const withdrawals = doc.data().withdrawals;
+                    withdrawals.forEach(withdrawal => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">${withdrawal.date}</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">${withdrawal.amount}</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">${withdrawal.method}</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">
+                                <span style="color: ${withdrawal.status === 'Completed' ? 'var(--success)' : 'var(--info)'};">${withdrawal.status}</span>
+                            </td>
+                        `;
+                        withdrawalHistoryBody.appendChild(row);
+                    });
+                } else {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td colspan="4" style="text-align: center; padding: 12px;">No withdrawals yet</td>
+                    `;
+                    withdrawalHistoryBody.appendChild(row);
+                }
+            }).catch((error) => {
+                console.error("Error loading withdrawal history:", error);
+            });
+        }
+
+        // Save bank details
+        bankDetailsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const userId = auth.currentUser.uid;
+            const bankDetails = {
+                accountName: document.getElementById('accountName').value,
+                bankName: document.getElementById('bankName').value,
+                accountNumber: document.getElementById('accountNumber').value,
+                accountType: document.getElementById('accountType').value,
+                ifscCode: document.getElementById('ifscCode').value,
+                upiId: document.getElementById('upiId').value,
+                updatedAt: new Date()
+            };
+            
+            db.collection("users").doc(userId).set({
+                bankDetails: bankDetails
+            }, { merge: true }).then(() => {
+                alert('Bank details saved successfully!');
+            }).catch((error) => {
+                console.error("Error saving bank details:", error);
+                alert('Error saving bank details. Please try again.');
+            });
+        });
+
+        // Request withdrawal
+        requestWithdrawalBtn.addEventListener('click', () => {
+            const amount = parseFloat(withdrawAmountInput.value);
+            const userId = auth.currentUser.uid;
+            
+            if (isNaN(amount) || amount < 500) {
+                alert('Minimum withdrawal amount is ₹500');
+                return;
+            }
+            
+            // In a real app, you would check available balance first
+            // Then create a withdrawal request in Firestore
+            
+            alert(`Withdrawal request for ₹${amount} submitted successfully!`);
+            withdrawAmountInput.value = '';
+        });
+
+        // Navigation Tabs
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active class from all items and contents
+                navItems.forEach(navItem => navItem.classList.remove('active'));
+                dashboardContents.forEach(content => content.classList.remove('active'));
+
+                // Add active class to clicked item
+                item.classList.add('active');
+
+                // Show corresponding content
+                const target = item.getAttribute('data-target');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', () => {
+            auth.signOut().then(() => {
+                window.location.href = 'login.html';
+            }).catch((error) => {
+                console.error("Error signing out:", error);
+            });
+        });
+
+        // Earnings Calculator
+        function calculateEarnings() {
+            const selectedPackage = document.getElementById('package').value;
+            const directSales = parseInt(document.getElementById('directSales').value) || 0;
+            const teamMembers = parseInt(document.getElementById('teamMembers').value) || 0;
+            const teamSales = parseInt(document.getElementById('teamSales').value) || 0;
+
+            let directRate = 0;
+            let teamRate = 0;
+            let bonus = 0;
+
+            // Set rates based on selectedPackage
+            switch (selectedPackage) {
+                case '29':
+                    directRate = 18;
+                    teamRate = 2;
+                    bonus = Math.min(directSales, 10) * 10; // 10 points per sale for first 10 sales
+                    break;
+                case '99':
+                    directRate = 59;
+                    teamRate = 20;
+                    bonus = Math.min(directSales, 50) * 10; // 10 points per sale for first 10 sales
+                    break;
+                case '299':
+                    directRate = 200;
+                    teamRate = 79;
+                    bonus = Math.min(directSales, 50) * 10; // 10 points per sale for first 50 sales
+                    break;
+                case '499':
+                    directRate = 390;
+                    teamRate = 89;
+                    bonus = Math.min(directSales, 100) * 10; // 10 points per sale for first 100 sales
+                    break;
+                case '699':
+                    directRate = 500;
+                    teamRate = 150;
+                    bonus = Math.min(directSales, 100) * 13; // 13 points per sale for first 100 sales
+                    break;
+                case '999':
+                    directRate = 700;
+                    teamRate = 250;
+                    bonus = Math.min(directSales, 100) * 19; // 19 points per sale for first 100 sales
+                    break;
+                case '2999':
+                    directRate = 2000;
+                    teamRate = 899;
+                    bonus = Math.min(directSales, 100) * 70; // 70 points per sale for first 100 sales
+                    break;
+            }
+
+            const directEarnings = directSales * directRate;
+            const teamEarnings = teamMembers * teamSales * teamRate;
+            const totalEarnings = directEarnings + teamEarnings;
+
+            // Update results
+            document.getElementById('calcDirectEarnings').textContent = `₹${directEarnings.toLocaleString()}`;
+            document.getElementById('calcTeamEarnings').textContent = `₹${teamEarnings.toLocaleString()}`;
+            document.getElementById('calcBonusPoints').textContent = bonus.toLocaleString();
+            document.getElementById('calcTotalEarnings').textContent = `₹${totalEarnings.toLocaleString()}`;
+        }
+
+        // Initialize calculator on page load
+        document.addEventListener('DOMContentLoaded', calculateEarnings);
+    </script>
+</body>
+</html>
+<script type="module" src="dashboard.js"></script>
