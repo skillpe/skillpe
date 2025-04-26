@@ -114,84 +114,51 @@
 
         /* Referral Section */
         .referral-section {
-            background: var(--light);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 30px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 30px 20px;
+            text-align: center;
         }
 
-        .referral-link-box {
-            background: var(--secondary);
-            border: 1px dashed #ccc;
-            border-radius: 6px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .referral-link {
-            word-break: break-all;
-            font-size: 0.9rem;
-            color: var(--primary);
-            font-weight: 500;
-        }
-
-        .copy-btn {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 0.25rem 0.5rem;
-            font-size: 0.8rem;
-            cursor: pointer;
-        }
-
-        .share-buttons {
+        .referral-box {
             display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .share-btn {
-            flex: 1;
-            min-width: 100px;
-            padding: 0.5rem;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
             justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .referral-box input {
+            width: 70%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            font-size: 1em;
+        }
+
+        .referral-box button {
+            padding: 8px 16px;
+            border: none;
+            background: #007bff;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
 
-        .share-btn i {
-            margin-right: 6px;
+        .share-buttons button {
+            margin: 0 8px;
+            padding: 8px 18px;
+            border: none;
+            border-radius: 5px;
+            background: #25d366;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 500;
         }
 
-        .whatsapp {
-            background: #25D366;
-            color: white;
-        }
-
-        .telegram {
+        .share-buttons button:last-child {
             background: #0088cc;
-            color: white;
-        }
-
-        .facebook {
-            background: #3b5998;
-            color: white;
-        }
-
-        .twitter {
-            background: #1DA1F2;
-            color: white;
         }
 
         /* Packages Grid */
@@ -533,6 +500,59 @@
             cursor: pointer;
             margin-left: auto;
         }
+
+        /* Crazy Animated Button Styles */
+        .crazy-btn {
+            display: inline-block;
+            padding: 16px 36px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc, #ffcc00, #ff00cc);
+            background-size: 400% 400%;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            cursor: pointer;
+            outline: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: crazy-gradient 2.5s linear infinite;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        @keyframes crazy-gradient {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .crazy-btn:active {
+            transform: scale(0.96) rotate(-2deg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .crazy-btn::after {
+            content: '';
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 0; height: 0;
+            background: rgba(255,255,255,0.25);
+            border-radius: 100%;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+            z-index: -1;
+        }
+        .crazy-btn:active::after {
+            width: 200%;
+            height: 200%;
+        }
+        @media (max-width: 600px) {
+            .crazy-btn {
+                padding: 14px 18px;
+                font-size: 1em;
+                width: 90vw;
+                max-width: 350px;
+            }
+        }
     </style>
 </head>
 
@@ -580,7 +600,11 @@
         <div class="payment-section" id="paymentSection">
             <h3 id="paymentHeading">Buy Course to Get Started</h3>
             <p id="paymentDescription">Purchase any package below to activate your affiliate account</p>
-            <button id="payNowBtn" class="btn btn-primary">Pay Now</button>
+            <div style="display:flex; flex-direction:column; gap:18px; align-items:center;">
+                <button class="crazy-btn" onclick="window.location.href='payment.html'">🚀 Get Started Now</button>
+                <button class="crazy-btn" onclick="window.location.href='payment.html'">🎉 Choose Plan</button>
+                <button class="crazy-btn" onclick="window.location.href='payment.html'">💸 Pay Now</button>
+            </div>
 
             <div id="referralSection" style="display: none; margin-top: 20px;">
                 <h3>Your Referral Code</h3>
@@ -609,7 +633,9 @@
                             <li><i class="fas fa-check"></i> WhatsApp Support</li>
                             <li><i class="fas fa-check"></i> 100 Bonus Points (for first 10 sales)</li>
                         </ul>
-                        <a href="https://test.instamojo.com/api/1.1/payment-requests/?userId={{userId}}&package=29" target="_blank" class="btn btn-primary">Get Started Now</a>
+                        <button class="crazy-btn" onclick="window.location.href='payment.html'">
+                            🚀 Get Started Now
+                        </button>
                     </div>
                 </div>
             
@@ -630,7 +656,9 @@
                             <li><i class="fas fa-check"></i> Priority Email Support</li>
                             <li><i class="fas fa-check"></i> 300 Bonus Points (for first 20 sales)</li>
                         </ul>
-                        <a href="https://test.instamojo.com/api/1.1/payment-requests/?userId={{userId}}&package=99" target="_blank" class="btn btn-outline">Choose Plan</a>
+                        <button class="crazy-btn" onclick="window.location.href='payment.html'">
+                            🎉 Choose Plan
+                        </button>
                     </div>
                 </div>
 
@@ -651,7 +679,9 @@
                             <li><i class="fas fa-check"></i> Priority Email Support</li>
                             <li><i class="fas fa-check"></i> 500 Bonus Points (for first 50 sales)</li>
                         </ul>
-                        <a href="RegisterNow.html" class="btn btn-outline">Choose Plan</a>
+                        <button class="crazy-btn" onclick="window.location.href='payment.html'">
+                            🎉 Choose Plan
+                        </button>
                     </div>
                 </div>
 
@@ -673,7 +703,9 @@
                             <li><i class="fas fa-check"></i> 1-on-1 Coaching Sessions</li>
                             <li><i class="fas fa-check"></i> 1000 Bonus Points (for first 100 sales)</li>
                         </ul>
-                        <a href="RegisterNow.html" class="btn btn-outline">Choose Plan</a>
+                        <button class="crazy-btn" onclick="window.location.href='payment.html'">
+                            🎉 Choose Plan
+                        </button>
                     </div>
                 </div>
 
@@ -694,7 +726,9 @@
                             <li><i class="fas fa-check"></i> Custom Landing Pages</li>
                             <li><i class="fas fa-check"></i> 1299 Bonus Points (for first 100 sales)</li>
                         </ul>
-                        <a href="RegisterNow.html" class="btn btn-outline">Choose Plan</a>
+                        <button class="crazy-btn" onclick="window.location.href='payment.html'">
+                            🎉 Choose Plan
+                        </button>
                     </div>
                 </div>
 
@@ -714,7 +748,9 @@
                             <li><i class="fas fa-check"></i> Webinar Support</li>
                             <li><i class="fas fa-check"></i> 1899 Bonus Points (for first 100 sales)</li>
                         </ul>
-                        <a href="RegisterNow.html" class="btn btn-outline">Choose Plan</a>
+                        <button class="crazy-btn" onclick="window.location.href='payment.html'">
+                            🎉 Choose Plan
+                        </button>
                     </div>
                 </div>
 
@@ -735,7 +771,9 @@
                             <li><i class="fas fa-check"></i> Exclusive Mastermind Access</li>
                             <li><i class="fas fa-check"></i> 6999 Bonus Points (for first 100 sales)</li>
                         </ul>
-                        <a href="RegisterNow.html" class="btn btn-outline">Choose Plan</a>
+                        <button class="crazy-btn" onclick="window.location.href='payment.html'">
+                            🎉 Choose Plan
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1254,6 +1292,37 @@
 
         // Initialize calculator on page load
         document.addEventListener('DOMContentLoaded', calculateEarnings);
+
+        // Show referral section only if payment done (referralActive true)
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                const docSnap = await db.collection('users').doc(user.uid).get();
+                if (docSnap.exists && docSnap.data().referralActive) {
+                    document.getElementById('referralSection').style.display = 'block';
+                    document.getElementById('referralLink').value = docSnap.data().referralLink;
+                } else {
+                    document.getElementById('referralSection').style.display = 'none';
+                }
+            }
+        });
+
+        // Copy Functionality
+        function copyReferralLink() {
+            const link = document.getElementById('referralLink');
+            link.select();
+            document.execCommand('copy');
+            alert('Copied: ' + link.value);
+        }
+
+        // Social Sharing
+        function shareWhatsApp() {
+            const link = document.getElementById('referralLink').value;
+            window.open(`https://wa.me/?text=Join%20SkillPe%20Affiliate%20${encodeURIComponent(link)}`);
+        }
+        function shareTelegram() {
+            const link = document.getElementById('referralLink').value;
+            window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=Join%20SkillPe%20Affiliate`);
+        }
     </script>
 </body>
 </html>
