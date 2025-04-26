@@ -288,7 +288,7 @@
     .upi-id {
       font-weight: 600;
       font-size: 1.1rem;
-      color: var (--primary);
+      color: var(--primary);
       background: rgba(108, 92, 231, 0.1);
       padding: 0.5rem 1rem;
       border-radius: 50px;
@@ -440,7 +440,7 @@
     }
     
     .social-icons a:hover {
-      color: var (--secondary);
+      color: var(--secondary);
     }
     
     @media (max-width: 768px) {
@@ -645,24 +645,41 @@
       const name = 'Aarush Sharma';
       const amount = currentSelectedAmount;
       const txnNote = encodeURIComponent(`SkillPe ${currentPackageName} Package`);
+      
+      let paymentUrl = '';
+      
+      // Create the base UPI payment URL
       const upiLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&tn=${txnNote}`;
       
-      let url = upiLink;
-      if (app === 'paytm') {
-        url = `paytmmp://pay?${upiLink.replace('upi://pay?', '')}`;
-      } else if (app === 'gpay') {
-        url = `tez://upi/pay?${upiLink.replace('upi://pay?', '')}`;
-      } else if (app === 'phonepe') {
-        url = `phonepe://pay?${upiLink.replace('upi://pay?', '')}`;
+      // Create app-specific URLs
+      switch(app) {
+        case 'paytm':
+          paymentUrl = `paytmmp://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&tn=${txnNote}`;
+          break;
+        case 'gpay':
+          paymentUrl = `tez://upi/pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&tn=${txnNote}`;
+          break;
+        case 'phonepe':
+          paymentUrl = `phonepe://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&am=${amount}&tn=${txnNote}`;
+          break;
+        case 'upi':
+          paymentUrl = upiLink;
+          break;
+        default:
+          paymentUrl = upiLink;
       }
       
-      // Close modal before redirecting
+      // Close the modal first
       closePaymentModal();
       
-      // Try to open the app, fallback to generic UPI if app not installed
-      window.location.href = url;
+      // Try to open the payment app
+      window.location.href = paymentUrl;
+      
+      // Fallback to generic UPI if app not installed
       setTimeout(() => {
-        window.location.href = upiLink;
+        if (!document.hidden) {
+          window.location.href = upiLink;
+        }
       }, 500);
     }
   </script>
